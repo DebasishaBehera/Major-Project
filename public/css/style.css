@@ -115,3 +115,16 @@ body {
   padding-left: 0;
   padding-right: 0;
 }
+
+/* map */
+#map {
+  height: 400px;
+  width: 80vh;
+}
+
+/* Edit image */
+.originalImageUrl {
+  height: 150px;
+  width: 250px;
+  image-resolution: 50dpi;
+}
