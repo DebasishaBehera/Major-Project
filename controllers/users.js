@@ -1,6 +1,5 @@
 const User = require("../models/user.js");
 
-
 module.exports.renderSignupForm = (req, res) => {
   res.render("users/signup.ejs");
 };
@@ -31,6 +30,7 @@ module.exports.renderLoginForm = (req, res) => {
 module.exports.login = async (req, res) => {
   req.flash("success", "Welcome back to staybnb!");
   let redirectUrl = res.locals.redirectUrl || "/listings";
+  console.log(redirectUrl);
   res.redirect(redirectUrl);
 };
 
