@@ -6,10 +6,22 @@ body {
 }
 .container {
   flex: 1;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .navbar {
-  height: 5rem;
+  /* height: 5rem; */
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   background-color: white;
+}
+.explore {
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: #fe424b !important;
 }
 .fa-compass {
   color: #fe424b;
@@ -130,16 +142,65 @@ body {
 }
 
 /* Index.ejs */
+
+
+/* Filters strip with side scroll and fixed tax toggle */
+#filters-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+/* left/right arrow buttons */
+.filter-arrow {
+  border: 1px solid #ddd;
+  background-color: #fff;
+  border-radius: 999px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.filter-arrow i {
+  font-size: 0.85rem;
+  pointer-events: none;
+}
+
+/* scrollable area */
 #filters {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
+  overflow-x: auto;
+  overflow-y: hidden;
+  gap: 1.5rem;
+  padding: 0.5rem 0;
+  scroll-behavior: smooth;
+}
+
+#filters.dragging {
+  scroll-behavior: auto; /* for JS drag */
+}
+
+/* hide scrollbar (optional) */
+#filters::-webkit-scrollbar {
+  height: 6px;
+}
+#filters::-webkit-scrollbar-track {
+  background: transparent;
+}
+#filters::-webkit-scrollbar-thumb {
+  background: #ddd;
+  border-radius: 3px;
 }
 
 .filter {
+  flex: 0 0 auto;
   text-align: center;
-  margin-right: 2rem;
-  margin-top: 2rem;
   opacity: 0.7;
 }
 
@@ -150,6 +211,7 @@ body {
 
 .filter p {
   font-size: 0.8rem;
+  margin-bottom: 0;
 }
 
 .tax-info {
@@ -163,6 +225,8 @@ body {
   margin-left: 5rem;
   display: flex;
   align-items: center;
+  white-space: nowrap;
+  
 }
 
 
@@ -186,4 +250,20 @@ body {
     border-radius: 25px;
     padding: 0.5rem 3rem 0.5rem 3rem;
     font-size: 1rem;
+  }
+
+  @media (max-width: 767.98px) {
+    .search-inp, .search-btn {
+      margin-top: 1rem;
+    }
+    #filters-wrapper {
+    gap: 0.5rem;
+  }
+
+  .tax-toggle {
+    margin-left: 0;
+    font-size: 0.8rem;
+    width: 12rem;
+  }
+
   }
