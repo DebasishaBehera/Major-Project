@@ -116,7 +116,7 @@ body {
 /* Show Image */
 
 .show-img {
-  height: 30vh;
+  height: 36vh;
 }
 
 .btns {
@@ -130,8 +130,10 @@ body {
 
 /* map */
 #map {
-  height: 400px;
-  width: 80vh;
+  height: 350px;
+  width: 100%;
+  border-radius: 1rem;
+  /* width: 80vh; */
 }
 
 /* Edit image */

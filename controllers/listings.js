@@ -1,4 +1,5 @@
 const Listing = require("../models/listing.js");
+const mongoose = require("mongoose");
 const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
 const mapToken = process.env.MAP_TOKEN;
 const geocodingClient = mbxGeocoding({ accessToken: mapToken });
@@ -14,6 +15,10 @@ module.exports.renderNewForm = (req, res) => {
 
 module.exports.showListing = async (req, res) => {
   let { id } = req.params;
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    req.flash("error", "Invalid listing id!");
+    return res.redirect("/listings");
+  }
   const listing = await Listing.findById(id)
     .populate({
       path: "reviews",
@@ -51,6 +56,10 @@ module.exports.createListing = async (req, res, next) => {
 
 module.exports.renderEditForm = async (req, res) => {
   let { id } = req.params;
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    req.flash("error", "Invalid listing id!");
+    return res.redirect("/listings");
+  }
   const listing = await Listing.findById(id);
   if (!listing) {
     req.flash("error", "Listing you requested for doesnot exist!");
@@ -63,6 +72,10 @@ module.exports.renderEditForm = async (req, res) => {
 
 module.exports.updateListing = async (req, res) => {
   let { id } = req.params;
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    req.flash("error", "Invalid listing id!");
+    return res.redirect("/listings");
+  }
   let listing = await Listing.findByIdAndUpdate(id, { ...req.body.listing });
   if (typeof req.file !== "undefined") {
     let url = req.file.path;
@@ -76,6 +89,10 @@ module.exports.updateListing = async (req, res) => {
 
 module.exports.destroyListing = async (req, res) => {
   let { id } = req.params;
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    req.flash("error", "Invalid listing id!");
+    return res.redirect("/listings");
+  }
   let deletedListing = await Listing.findByIdAndDelete(id);
   console.log(deletedListing);
   req.flash("success", "Listing Deleted!");

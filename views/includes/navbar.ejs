@@ -8,15 +8,14 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <!-- <div class="navbar-nav">
-        <a class="nav-link" href="/listings">Explore</a>
-      </div> -->
-      <div class="navbar-nav ms-auto ss">
-        <form class="d-flex" role="search">
-          <input class="form-control me-2 search-inp" type="search" placeholder="Search destinations" />
-          <button class="btn search-btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i>Search</button>
-        </form>
-      </div>
+      <% if (showSearch) { %>
+        <div class="navbar-nav ms-auto ss">
+          <form class="d-flex" role="search">
+            <input class="form-control me-2 search-inp" type="search" placeholder="Search destinations" />
+            <button class="btn search-btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i>Search</button>
+          </form>
+        </div>
+      <% } %>
       <div class="navbar-nav ms-auto">
         <a class="nav-link" href="/listings/new">Staybnb your home</a>
         <% if(!currUser) { %>
